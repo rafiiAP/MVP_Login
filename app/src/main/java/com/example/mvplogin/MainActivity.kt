@@ -6,15 +6,22 @@ import android.os.Bundle
 import android.widget.Button
 import com.example.mvplogin.login.view.LoginActivity
 
+/**
+*build view and view's interface. before that, let see what is mvp
+ */
+
 class MainActivity : AppCompatActivity() {
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findViewById<Button>(R.id.buttonLogin).setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
+        findViewById<Button>(R.id.btnLogin).setOnClickListener {
+            val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
         }
-
     }
+
 }

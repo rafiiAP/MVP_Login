@@ -8,6 +8,8 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.example.mvplogin.R
+import com.example.mvplogin.login.presenter.ILoginPresenter
+import com.example.mvplogin.login.presenter.LoginPresenter
 
 class LoginActivity : AppCompatActivity(), ILoginView {
 
@@ -17,14 +19,22 @@ class LoginActivity : AppCompatActivity(), ILoginView {
     private lateinit var editTextPW : EditText
     private lateinit var frameLayoutProgress : FrameLayout
 
+    private lateinit var iLoginPresenter: ILoginPresenter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        initPresenter()
+
         findView()
         setListener()
 
+    }
+
+    private fun initPresenter(){
+        iLoginPresenter = LoginPresenter(iLoginView = this)
     }
 
     private fun findView(){
@@ -39,7 +49,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
 
     private fun setListener(){
         buttonLogin.setOnClickListener {
-
+            iLoginPresenter.login(id = editTextID.text.toString().trim(), password = editTextPW.text.toString().trim())
         }
     }
 

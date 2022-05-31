@@ -1,14 +1,15 @@
 package com.example.mvplogin.framework.util.thread
 
 import java.util.concurrent.Executors
-import java.util.logging.Handler
+import android.os.Handler
+import android.os.Looper
 
 class ThreadUtil {
 
     companion object{
 
         private val excecutorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
-        private val handler = Handler(looper.getMainLooper())
+        private val handler = Handler(Looper.getMainLooper())
 
         fun startThread(runnable: Runnable){
             excecutorService.submit(runnable)
