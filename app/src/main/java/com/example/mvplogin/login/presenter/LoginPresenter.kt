@@ -25,21 +25,17 @@ class LoginPresenter(var iLoginView: ILoginView): ILoginPresenter {
 
         LoginController.requestLogin(id = id, password = password, object: LoginController.LoginControllerDelegate{
             override fun onSuccess(response: String) {
-                Log.d("???", "onSuccess $response")
 
-                val userInfoModel = UserInfoModel()
-                userInfoModel.nickname = "Coding with cat"
-                userInfoModel.age = 1
+
 
                 ThreadUtil.startUIThread(0){
                     hideProgress()
 
-                    iLoginView.onUpdateLoginResultInfo(nickname = userInfoModel.nickname, age = userInfoModel.age)
+
                 }
             }
 
             override fun onFailed() {
-                Log.d("???", "onFailed")
                 hideProgress()
             }
 
